@@ -3,14 +3,15 @@ import { Section } from "@/components/ui/Section";
 import { profile } from "@/content/profile";
 import { currentLocale, localize } from "@/lib/utils";
 
-// TODO: [PENDIENTE] foto (spec §10.5) y 2–3 líneas personales.
+// TODO: [PENDIENTE] foto (spec §10.5).
 export async function About() {
   const locale = await currentLocale();
   const t = await getTranslations();
 
   return (
     <Section id="about" index="04" title={t("nav.about")}>
-      <p className="max-w-prose text-lead">
+      <p className="max-w-prose text-lead">{localize(profile.story, locale)}</p>
+      <p className="mt-6 max-w-prose text-muted">
         {localize(profile.summary, locale)}
       </p>
 

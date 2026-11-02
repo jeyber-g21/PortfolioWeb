@@ -64,6 +64,7 @@ export interface Profile {
   title: Localized; // "Desarrollador Full-Stack & Cloud"
   headline: Localized; // 10–15 palabras. Va en el hero
   summary: Localized; // Párrafo completo. Va en Sobre mí
+  story: Localized; // 2–3 líneas personales: lo único del sitio que suena a persona (spec §10.5)
   location: Localized;
   timezone: string;
   email: string;

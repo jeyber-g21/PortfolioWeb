@@ -29,7 +29,6 @@ export const experience: ExperienceItem[] = [
         en: "Deploy and operate the platforms on AWS (ECS, Lambda, API Gateway, CloudWatch…) through CI/CD pipelines with GitHub Actions.",
       },
     ],
-    // TODO: [PENDIENTE] confirmar qué tecnologías usa exactamente este puesto.
     stack: [
       "Python",
       "FastAPI",
@@ -94,7 +93,6 @@ export const education: EducationItem[] = [
     },
     institution: "Universidad de Pamplona",
     date: { es: "Octubre 2021", en: "October 2021" },
-    // TODO: [PENDIENTE] confirmar redacción (ángulo de spec §4.4).
     note: {
       es: "La base de ingeniería: pensamiento de sistemas, control y hardware, aplicados hoy al software.",
       en: "The engineering foundation: systems thinking, control and hardware, now applied to software.",
