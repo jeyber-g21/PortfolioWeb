@@ -6,7 +6,8 @@ escribir código y respétala. Si algo contradice este archivo, gana el spec.
 @AGENTS.md
 
 ## Qué es esto
-Portafolio personal estático, bilingüe (ES/EN), construido con Next.js 16
+Portafolio personal estático, bilingüe (ES/EN), con inicio-resumen y páginas
+propias (Proyectos, Experiencia, Sobre mí, Contacto) en rutas localizadas, construido con Next.js 16
 (App Router), TypeScript, Tailwind 4, next-intl y next-themes.
 Audiencia: reclutadores técnicos. Objetivo: comunicar nivel profesional
 en menos de 90 segundos.
@@ -14,8 +15,9 @@ en menos de 90 segundos.
 ## Reglas no negociables
 
 1. **Server Components por defecto.** `'use client'` solo en el toggle de
-   tema, el selector de idioma y el envoltorio de animación. Si añades un
-   cuarto, justifícalo en el PR.
+   tema, el selector de idioma, los enlaces del navbar (`NavLinks`, necesita la
+   ruta activa para `aria-current`) y el envoltorio de animación. Si añades
+   otro, justifícalo en el PR.
 2. **Nada de texto quemado en componentes.** Todo string visible sale de
    `i18n/messages/{es,en}.json` o de `src/content/`.
 3. **Los tokens de diseño están en `globals.css` bajo `@theme`.** Nunca

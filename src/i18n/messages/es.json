@@ -8,8 +8,8 @@
     "mainNav": "Navegación principal"
   },
   "nav": {
+    "home": "Inicio",
     "projects": "Proyectos",
-    "stack": "Stack",
     "experience": "Experiencia",
     "about": "Sobre mí",
     "contact": "Contacto",
@@ -69,6 +69,8 @@
   "experience": {
     "present": "Presente",
     "via": "vía",
+    "career": "Trayectoria",
+    "stack": "Stack",
     "education": "Formación"
   },
   "about": {
@@ -76,5 +78,13 @@
   },
   "contact": {
     "email": "Correo"
+  },
+  "home": {
+    "featured": "Proyectos destacados",
+    "allProjects": "Ver todos los proyectos",
+    "experience": "Experiencia",
+    "fullExperience": "Ver trayectoria completa",
+    "coreStack": "Stack principal",
+    "contact": "Hablemos"
   }
 }

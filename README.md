@@ -9,15 +9,15 @@ The site is also a code sample in its own right, so this repository is public.
 
 ## Stack
 
-| Area      | Choice                                                                                               |
-| --------- | ---------------------------------------------------------------------------------------------------- |
-| Framework | [Next.js 16](https://nextjs.org) (App Router, static generation)                                     |
-| Language  | TypeScript (strict)                                                                                  |
-| Styling   | Tailwind CSS 4, CSS-first design tokens via `@theme`                                                 |
-| i18n      | [next-intl](https://next-intl.dev): `/en` and `/es` routes, root redirect by `Accept-Language`       |
-| Theming   | [next-themes](https://github.com/pacocoursey/next-themes): light / dark, persisted, no flash on load |
-| Fonts     | Fraunces, Inter and JetBrains Mono, self-hosted through `next/font`                                  |
-| CI        | GitHub Actions: format, lint, typecheck and build on every push and PR                               |
+| Area      | Choice                                                                                                                   |
+| --------- | ------------------------------------------------------------------------------------------------------------------------ |
+| Framework | [Next.js 16](https://nextjs.org) (App Router, static generation)                                                         |
+| Language  | TypeScript (strict)                                                                                                      |
+| Styling   | Tailwind CSS 4, CSS-first design tokens via `@theme`                                                                     |
+| i18n      | [next-intl](https://next-intl.dev): localized URLs (`/en/projects`, `/es/proyectos`), root redirect by `Accept-Language` |
+| Theming   | [next-themes](https://github.com/pacocoursey/next-themes): light / dark, persisted, no flash on load                     |
+| Fonts     | Fraunces, Inter and JetBrains Mono, self-hosted through `next/font`                                                      |
+| CI        | GitHub Actions: format, lint, typecheck and build on every push and PR                                                   |
 
 No UI component library, no CMS, no backend, no global state.
 
@@ -25,7 +25,8 @@ No UI component library, no CMS, no backend, no global state.
 
 - **Content is typed data, separate from the UI.** Everything shown on the page lives in [`src/content/`](src/content), and the components only render it. Updating a project means editing an object, never JSX.
 - **The compiler catches content typos.** Project and experience stacks are typed against the skill list in [`stack.ts`](src/content/stack.ts), so a misspelled technology (`"Reactt"`) fails the typecheck. Translation keys are typed too.
-- **Server Components by default.** Only two components ship to the client: the theme toggle and the language switch. Their strings arrive as props, so no translation JSON is sent to the browser.
+- **The home page is a summary; the other pages hold the detail.** A recruiter who never clicks still sees projects, experience, core stack and contact on the home page. Projects, Experience, About and Contact each have their own page.
+- **Server Components by default.** Only three small components ship to the client: the theme toggle, the language switch and the nav links (which need the active route). Their strings arrive as props, so no translation JSON is sent to the browser.
 - **Works without JavaScript.** Every page is pre-rendered HTML. Navigation, the language switch and the CV download are plain links. The sticky header's bottom rule appears on scroll using a CSS scroll-driven animation, with no JS.
 - **Dark mode is its own palette.** It is a separately designed warm-ink palette, not an inversion of the light one. Every text and background pair meets WCAG AA in both themes.
 - **Accessibility is an acceptance criterion.** The target is WCAG 2.2 AA: a skip link, a single `h1` with no heading-level gaps, landmarks with `aria-labelledby`, a visible focus ring, 44 px touch targets, `prefers-reduced-motion` respected and underlined body links.
@@ -35,13 +36,13 @@ No UI component library, no CMS, no backend, no global state.
 ```
 src/
 ├── app/
-│   ├── [locale]/            # Root layout, home page and localized 404
+│   ├── [locale]/            # Root layout, home and the projects, experience, about, contact pages
 │   ├── global-not-found.tsx # Bilingual 404 for unmatched URLs
 │   └── globals.css          # Design tokens (color, type scale, spacing)
 ├── components/
 │   ├── layout/              # Header, Footer, ThemeToggle, LocaleSwitch
-│   ├── sections/            # Hero, Projects, Stack, Experience, About, Contact
-│   └── ui/                  # Section, Tag, ButtonLink
+│   ├── sections/            # Hero, ProjectCard, ExperienceTimeline, StackGrid, …
+│   └── ui/                  # Section, PageHeader, Tag, ButtonLink
 ├── content/                 # Typed content: profile, experience, projects, stack
 ├── i18n/                    # Routing, request config and en/es messages
 ├── lib/                     # Fonts, site config, helpers
@@ -70,6 +71,7 @@ npm run dev          # http://localhost:3000
 
 - [x] Foundations: i18n, theming, design tokens, CI
 - [x] Content and sections
+- [x] Multi-page structure with a summary home page
 - [ ] Polish: motion, metadata, Open Graph images, JSON-LD, axe and Lighthouse CI
 - [ ] Case studies for professional projects (MDX)
 

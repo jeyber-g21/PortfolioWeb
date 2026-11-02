@@ -1,16 +1,15 @@
 import { getTranslations } from "next-intl/server";
 import { ButtonLink, textLink } from "@/components/ui/ButtonLink";
-import { Section } from "@/components/ui/Section";
 import { profile } from "@/content/profile";
 import { currentLocale, localize } from "@/lib/utils";
 
 // Email visible y copiable, sin formulario ni teléfono (spec §10.6, CLAUDE.md regla 9).
-export async function Contact() {
+export async function ContactDetails() {
   const locale = await currentLocale();
   const t = await getTranslations();
 
   return (
-    <Section id="contact" index="05" title={t("nav.contact")}>
+    <>
       <p className="max-w-prose text-lead text-muted">
         {localize(profile.contactNote, locale)}
       </p>
@@ -36,6 +35,6 @@ export async function Contact() {
           {t("social.linkedin")}
         </a>
       </div>
-    </Section>
+    </>
   );
 }

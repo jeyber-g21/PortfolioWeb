@@ -8,8 +8,8 @@
     "mainNav": "Main navigation"
   },
   "nav": {
+    "home": "Home",
     "projects": "Projects",
-    "stack": "Stack",
     "experience": "Experience",
     "about": "About",
     "contact": "Contact",
@@ -69,6 +69,8 @@
   "experience": {
     "present": "Present",
     "via": "via",
+    "career": "Career",
+    "stack": "Stack",
     "education": "Education"
   },
   "about": {
@@ -76,5 +78,13 @@
   },
   "contact": {
     "email": "Email"
+  },
+  "home": {
+    "featured": "Featured projects",
+    "allProjects": "See all projects",
+    "experience": "Experience",
+    "fullExperience": "See full career",
+    "coreStack": "Core stack",
+    "contact": "Let’s talk"
   }
 }

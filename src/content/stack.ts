@@ -60,3 +60,17 @@ export const skills = [
 ] as const satisfies readonly Skill[];
 
 export type SkillName = (typeof skills)[number]["name"];
+
+/** Resumen del stack para la página de inicio: lo más representativo de uso diario. */
+export const coreStack: SkillName[] = [
+  "Python",
+  "TypeScript",
+  "Angular",
+  "React",
+  "Node.js",
+  "FastAPI",
+  "AWS",
+  "PostgreSQL",
+  "MongoDB",
+  "Docker",
+];

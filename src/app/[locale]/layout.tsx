@@ -5,6 +5,7 @@ import { getTranslations, setRequestLocale } from "next-intl/server";
 import { ThemeProvider } from "next-themes";
 import { Footer } from "@/components/layout/Footer";
 import { Header } from "@/components/layout/Header";
+import { profile } from "@/content/profile";
 import { routing } from "@/i18n/routing";
 import { fontVariables } from "@/lib/fonts";
 import "../globals.css";
@@ -19,7 +20,10 @@ export async function generateMetadata({
   const { locale } = await params;
   if (!hasLocale(routing.locales, locale)) notFound();
   const t = await getTranslations({ locale, namespace: "metadata" });
-  return { title: t("title"), description: t("description") };
+  return {
+    title: { default: t("title"), template: `%s — ${profile.displayName}` },
+    description: t("description"),
+  };
 }
 
 export default async function LocaleLayout({

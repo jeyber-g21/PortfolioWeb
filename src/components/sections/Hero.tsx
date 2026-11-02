@@ -1,9 +1,11 @@
 import { getTranslations } from "next-intl/server";
-import { ButtonLink, textLink } from "@/components/ui/ButtonLink";
+import { ButtonLink, buttonStyles, textLink } from "@/components/ui/ButtonLink";
 import { profile } from "@/content/profile";
+import { Link } from "@/i18n/navigation";
 import { currentLocale, localize } from "@/lib/utils";
 
 // Sin animación de entrada: es el LCP y debe pintarse en el primer frame (spec §10.1).
+// TODO: [PENDIENTE] foto a la derecha (columnas 8–12) cuando exista profile.photo.
 export async function Hero() {
   const locale = await currentLocale();
   const t = await getTranslations();
@@ -28,7 +30,9 @@ export async function Hero() {
           </p>
 
           <div className="mt-10 flex flex-wrap gap-3">
-            <ButtonLink href="#projects">{t("hero.viewProjects")}</ButtonLink>
+            <Link href="/projects" className={buttonStyles()}>
+              {t("hero.viewProjects")}
+            </Link>
             <ButtonLink href={profile.cv[locale]} download variant="secondary">
               {t("hero.downloadCv")}
             </ButtonLink>
