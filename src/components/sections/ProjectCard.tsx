@@ -96,12 +96,20 @@ export async function ProjectCard({
 /** Lista con filetes entre proyectos; el primero arranca pegado al filete superior. */
 export function ProjectList({
   projects,
+  reveal = false,
   ...cardProps
-}: Omit<Props, "project"> & { projects: Project[] }) {
+}: Omit<Props, "project"> & {
+  projects: Project[];
+  /** Animar cada proyecto al hacer scroll. No usar dentro de <Section>, que ya anima el bloque. */
+  reveal?: boolean;
+}) {
   return (
     <ul className="divide-y divide-border border-b border-border">
       {projects.map((project) => (
-        <li key={project.slug} className="first:*:pt-0">
+        <li
+          key={project.slug}
+          className={`first:*:pt-0 ${reveal ? "reveal" : ""}`}
+        >
           <ProjectCard project={project} {...cardProps} />
         </li>
       ))}

@@ -3,6 +3,7 @@ import { EducationList } from "@/components/sections/EducationList";
 import { ExperienceTimeline } from "@/components/sections/ExperienceTimeline";
 import { StackGrid } from "@/components/sections/StackGrid";
 import { PageHeader } from "@/components/ui/PageHeader";
+import { PageTransition } from "@/components/ui/PageTransition";
 import { Section } from "@/components/ui/Section";
 import { initPage, pageMetadata } from "@/lib/utils";
 
@@ -20,18 +21,22 @@ export default async function ExperiencePage({
 
   return (
     <>
-      <PageHeader index="02" title={t("nav.experience")} />
-      <div className="pt-section">
-        <Section id="career" index="01" title={t("experience.career")}>
-          <ExperienceTimeline />
-        </Section>
-        <Section id="stack" index="02" title={t("experience.stack")}>
-          <StackGrid />
-        </Section>
-        <Section id="education" index="03" title={t("experience.education")}>
-          <EducationList />
-        </Section>
-      </div>
+      <PageTransition>
+        <PageHeader index="02" title={t("nav.experience")} />
+      </PageTransition>
+      <PageTransition delayed>
+        <div className="pt-section">
+          <Section id="career" index="01" title={t("experience.career")}>
+            <ExperienceTimeline />
+          </Section>
+          <Section id="stack" index="02" title={t("experience.stack")}>
+            <StackGrid />
+          </Section>
+          <Section id="education" index="03" title={t("experience.education")}>
+            <EducationList />
+          </Section>
+        </div>
+      </PageTransition>
     </>
   );
 }

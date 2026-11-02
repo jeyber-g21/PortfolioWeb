@@ -27,6 +27,7 @@ No UI component library, no CMS, no backend, no global state.
 - **The compiler catches content typos.** Project and experience stacks are typed against the skill list in [`stack.ts`](src/content/stack.ts), so a misspelled technology (`"Reactt"`) fails the typecheck. Translation keys are typed too.
 - **The home page is a summary; the other pages hold the detail.** A recruiter who never clicks still sees projects, experience, core stack and contact on the home page. Projects, Experience, About and Contact each have their own page.
 - **Server Components by default.** Only three small components ship to the client: the theme toggle, the language switch and the nav links (which need the active route). Their strings arrive as props, so no translation JSON is sent to the browser.
+- **Motion without a motion library.** Page changes use React 19.3 `<ViewTransition>` over the browser View Transitions API: a short fade and a 16 px rise, with the header anchored. Blocks reveal on scroll through CSS scroll-driven animations (`animation-timeline: view()`). Both turn off under `prefers-reduced-motion`, ship no extra JS, and degrade to no animation where unsupported.
 - **Works without JavaScript.** Every page is pre-rendered HTML. Navigation, the language switch and the CV download are plain links. The sticky header's bottom rule appears on scroll using a CSS scroll-driven animation, with no JS.
 - **Dark mode is its own palette.** It is a separately designed warm-ink palette, not an inversion of the light one. Every text and background pair meets WCAG AA in both themes.
 - **Accessibility is an acceptance criterion.** The target is WCAG 2.2 AA: a skip link, a single `h1` with no heading-level gaps, landmarks with `aria-labelledby`, a visible focus ring, 44 px touch targets, `prefers-reduced-motion` respected and underlined body links.
@@ -72,7 +73,8 @@ npm run dev          # http://localhost:3000
 - [x] Foundations: i18n, theming, design tokens, CI
 - [x] Content and sections
 - [x] Multi-page structure with a summary home page
-- [ ] Polish: motion, metadata, Open Graph images, JSON-LD, axe and Lighthouse CI
+- [x] Page transitions and scroll reveals
+- [ ] Polish: metadata, Open Graph images, JSON-LD, axe and Lighthouse CI
 - [ ] Case studies for professional projects (MDX)
 
 ## Contact

@@ -14,7 +14,11 @@ export async function Header() {
   const otherLocale: Locale = locale === "es" ? "en" : "es";
 
   return (
-    <header className="sticky top-0 z-10 header-scroll-border bg-bg/85 backdrop-blur-sm">
+    <header
+      // Nombre fijo para que no se anime al cambiar de página (globals.css).
+      style={{ viewTransitionName: "site-header" }}
+      className="sticky top-0 z-10 header-scroll-border bg-bg/85 backdrop-blur-sm"
+    >
       {/* Móvil: marca y controles arriba, navegación en una segunda fila. Escritorio: una sola fila. */}
       <div className="mx-auto flex max-w-page flex-wrap items-center justify-between gap-x-6 px-6 py-2 md:flex-nowrap md:px-12">
         <Link href="/" className="font-display text-h3 text-ink">

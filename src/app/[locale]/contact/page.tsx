@@ -1,6 +1,7 @@
 import { getTranslations } from "next-intl/server";
 import { ContactDetails } from "@/components/sections/ContactDetails";
 import { PageHeader } from "@/components/ui/PageHeader";
+import { PageTransition } from "@/components/ui/PageTransition";
 import { initPage, pageMetadata } from "@/lib/utils";
 
 export function generateMetadata({ params }: PageProps<"/[locale]/contact">) {
@@ -15,14 +16,18 @@ export default async function ContactPage({
 
   return (
     <>
-      <PageHeader index="04" title={t("contact")} />
-      <div className="mx-auto max-w-page px-6 py-section md:px-12">
-        <div className="border-t border-border pt-section lg:grid lg:grid-cols-12 lg:gap-8">
-          <div className="lg:col-span-9 lg:col-start-4">
-            <ContactDetails />
+      <PageTransition>
+        <PageHeader index="04" title={t("contact")} />
+      </PageTransition>
+      <PageTransition delayed>
+        <div className="mx-auto max-w-page px-6 py-section md:px-12">
+          <div className="border-t border-border pt-section lg:grid lg:grid-cols-12 lg:gap-8">
+            <div className="lg:col-span-9 lg:col-start-4">
+              <ContactDetails />
+            </div>
           </div>
         </div>
-      </div>
+      </PageTransition>
     </>
   );
 }

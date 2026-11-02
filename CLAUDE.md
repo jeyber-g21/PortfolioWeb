@@ -16,8 +16,9 @@ en menos de 90 segundos.
 
 1. **Server Components por defecto.** `'use client'` solo en el toggle de
    tema, el selector de idioma, los enlaces del navbar (`NavLinks`, necesita la
-   ruta activa para `aria-current`) y el envoltorio de animación. Si añades
-   otro, justifícalo en el PR.
+   ruta activa para `aria-current`). Las animaciones no necesitan cliente:
+   transiciones con `<ViewTransition>` de React y `reveal` en CSS puro. Si
+   añades otro, justifícalo en el PR.
 2. **Nada de texto quemado en componentes.** Todo string visible sale de
    `i18n/messages/{es,en}.json` o de `src/content/`.
 3. **Los tokens de diseño están en `globals.css` bajo `@theme`.** Nunca

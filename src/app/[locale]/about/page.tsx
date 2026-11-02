@@ -1,5 +1,6 @@
 import { getTranslations } from "next-intl/server";
 import { PageHeader } from "@/components/ui/PageHeader";
+import { PageTransition } from "@/components/ui/PageTransition";
 import { profile } from "@/content/profile";
 import { initPage, localize, pageMetadata } from "@/lib/utils";
 
@@ -16,33 +17,37 @@ export default async function AboutPage({
 
   return (
     <>
-      <PageHeader index="03" title={t("nav.about")} />
-      <div className="mx-auto max-w-page px-6 py-section md:px-12">
-        <div className="border-t border-border pt-section lg:grid lg:grid-cols-12 lg:gap-8">
-          <div className="lg:col-span-9 lg:col-start-4">
-            <p className="max-w-prose text-lead">
-              {localize(profile.story, locale)}
-            </p>
-            <p className="mt-6 max-w-prose text-muted">
-              {localize(profile.summary, locale)}
-            </p>
+      <PageTransition>
+        <PageHeader index="03" title={t("nav.about")} />
+      </PageTransition>
+      <PageTransition delayed>
+        <div className="mx-auto max-w-page px-6 py-section md:px-12">
+          <div className="border-t border-border pt-section lg:grid lg:grid-cols-12 lg:gap-8">
+            <div className="lg:col-span-9 lg:col-start-4">
+              <p className="max-w-prose text-lead">
+                {localize(profile.story, locale)}
+              </p>
+              <p className="mt-6 max-w-prose text-muted">
+                {localize(profile.summary, locale)}
+              </p>
 
-            <h2 className="mt-12 label font-sans text-muted">
-              {t("about.languages")}
-            </h2>
-            <ul className="mt-4 flex flex-wrap gap-x-8 gap-y-2">
-              {profile.languages.map((lang) => (
-                <li key={lang.name.en}>
-                  {localize(lang.name, locale)}{" "}
-                  <span className="text-muted">
-                    · {localize(lang.level, locale)}
-                  </span>
-                </li>
-              ))}
-            </ul>
+              <h2 className="mt-12 label font-sans text-muted">
+                {t("about.languages")}
+              </h2>
+              <ul className="mt-4 flex flex-wrap gap-x-8 gap-y-2">
+                {profile.languages.map((lang) => (
+                  <li key={lang.name.en}>
+                    {localize(lang.name, locale)}{" "}
+                    <span className="text-muted">
+                      · {localize(lang.level, locale)}
+                    </span>
+                  </li>
+                ))}
+              </ul>
+            </div>
           </div>
         </div>
-      </div>
+      </PageTransition>
     </>
   );
 }

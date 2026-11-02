@@ -17,7 +17,7 @@ export function Section({ id, index, title, children }: Props) {
       aria-labelledby={headingId}
       className="mx-auto max-w-page px-6 md:px-12"
     >
-      <div className="grid gap-10 border-t border-border py-section lg:grid-cols-12 lg:gap-8">
+      <div className="grid reveal gap-10 border-t border-border py-section lg:grid-cols-12 lg:gap-8">
         <div className="lg:col-span-3">
           <p className="label text-muted" aria-hidden>
             {index}
