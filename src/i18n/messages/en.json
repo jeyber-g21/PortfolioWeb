@@ -1,0 +1,80 @@
+{
+  "metadata": {
+    "title": "Jeyber Gómez — Full-Stack & Cloud Developer",
+    "description": "Full-Stack & Cloud Developer. Python · Angular · AWS · SQL. APIs, serverless architectures and AI-driven solutions."
+  },
+  "a11y": {
+    "skipToContent": "Skip to content",
+    "mainNav": "Main navigation"
+  },
+  "nav": {
+    "projects": "Projects",
+    "stack": "Stack",
+    "experience": "Experience",
+    "about": "About",
+    "contact": "Contact",
+    "downloadCv": "Download CV"
+  },
+  "theme": {
+    "toggle": "Dark mode"
+  },
+  "locale": {
+    "label": "Language",
+    "switchTo": "View in Spanish",
+    "short": "ES"
+  },
+  "footer": {
+    "builtWith": "Built with Next.js.",
+    "sourceCode": "Source on GitHub"
+  },
+  "notFound": {
+    "title": "Page not found",
+    "back": "Back to home"
+  },
+  "hero": {
+    "viewProjects": "View projects",
+    "downloadCv": "Download CV"
+  },
+  "social": {
+    "github": "GitHub",
+    "linkedin": "LinkedIn"
+  },
+  "projects": {
+    "kind": {
+      "professional": "Professional",
+      "personal": "Personal",
+      "coursework": "Coursework"
+    },
+    "proprietary": "Proprietary work",
+    "client": "Client",
+    "problem": "Problem",
+    "outcome": "Outcome",
+    "demo": "Demo",
+    "code": "Code",
+    "caseStudy": "Case study",
+    "coursework": "See also my coursework projects on GitHub"
+  },
+  "stack": {
+    "categories": {
+      "languages": "Languages",
+      "frontend": "Frontend",
+      "backend": "Backend",
+      "databases": "Databases",
+      "cloud": "Cloud & DevOps",
+      "ai": "AI",
+      "tools": "Tools"
+    },
+    "legend": "In bold, what I use daily."
+  },
+  "experience": {
+    "present": "Present",
+    "via": "via",
+    "education": "Education"
+  },
+  "about": {
+    "languages": "Languages"
+  },
+  "contact": {
+    "email": "Email"
+  }
+}
