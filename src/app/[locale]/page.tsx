@@ -1,5 +1,6 @@
 import { getTranslations } from "next-intl/server";
 import { ContactDetails } from "@/components/sections/ContactDetails";
+import { CourseworkList } from "@/components/sections/CourseworkList";
 import { JobMeta } from "@/components/sections/ExperienceTimeline";
 import { Hero } from "@/components/sections/Hero";
 import { ProjectList } from "@/components/sections/ProjectCard";
@@ -20,6 +21,7 @@ export default async function HomePage({ params }: PageProps<"/[locale]">) {
   const featured = projects
     .filter((p) => p.featured && p.kind !== "coursework")
     .slice(0, 4);
+  const coursework = projects.filter((p) => p.kind === "coursework");
 
   return (
     <>
@@ -41,7 +43,15 @@ export default async function HomePage({ params }: PageProps<"/[locale]">) {
           </p>
         </Section>
 
-        <Section id="experience-summary" index="02" title={t("experience")}>
+        <Section id="coursework" index="02" title={t("coursework")}>
+          <CourseworkList
+            projects={coursework}
+            locale={locale}
+            headingLevel={3}
+          />
+        </Section>
+
+        <Section id="experience-summary" index="03" title={t("experience")}>
           <ul className="space-y-8">
             {experience.map((job) => (
               <li key={`${job.company}-${job.start}`}>
@@ -63,7 +73,7 @@ export default async function HomePage({ params }: PageProps<"/[locale]">) {
           </p>
         </Section>
 
-        <Section id="contact-summary" index="03" title={t("contact")}>
+        <Section id="contact-summary" index="04" title={t("contact")}>
           <ContactDetails />
         </Section>
       </PageTransition>

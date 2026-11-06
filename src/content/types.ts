@@ -20,6 +20,13 @@ export type ProjectKind = "personal" | "professional" | "coursework";
 //  professional → caso de estudio sin repo (trabajo propietario)
 //  coursework   → formación; no se muestra en destacados
 
+export interface Screenshot {
+  src: string;
+  width: number;
+  height: number;
+  alt: Localized;
+}
+
 export interface Project {
   slug: string;
   kind: ProjectKind;
@@ -35,7 +42,12 @@ export interface Project {
     demo?: string;
     caseStudy?: string; // Ruta interna: /proyectos/{slug}
   };
-  image?: { src: string; alt: Localized };
+  /** Capturas de pantalla, la primera es la portada. Sin datos de clientes reales. */
+  images?: Screenshot[];
+  /** En lugar de capturas: diagrama propio dibujado en código (textos en los mensajes). */
+  diagram?: "chatbot-architecture";
+  /** 2–4 cifras verificables (salen de _privado/metricas-proyectos). */
+  metrics?: { value: Localized; label: Localized }[];
   year?: number;
 }
 
@@ -71,6 +83,8 @@ export interface Profile {
   // Sin teléfono: solo va en los PDF del CV (CLAUDE.md, regla 9).
   social: { github: string; linkedin: string };
   cv: Localized; // Rutas a los PDF
+  photo: Screenshot; // Hero
+  aboutPhoto: Screenshot; // Sobre mí: primer plano
   availability: Localized; // "Disponible para roles remotos"
   contactNote: Localized; // Línea de disponibilidad de la sección Contacto
   languages: { name: Localized; level: Localized }[];

@@ -24,16 +24,24 @@ export const skills = [
   { name: "CSS", category: "frontend", level: "daily" },
   { name: "Next.js", category: "frontend", level: "working" },
   { name: "Tailwind CSS", category: "frontend", level: "working" },
+  { name: "shadcn/ui", category: "frontend", level: "working" },
 
   // Backend
   { name: "Node.js", category: "backend", level: "daily" },
   { name: "FastAPI", category: "backend", level: "daily" },
   { name: "Express", category: "backend", level: "working" },
+  { name: "Prisma", category: "backend", level: "working" },
+  { name: "Socket.io", category: "backend", level: "working" },
+  { name: "Drizzle", category: "backend", level: "working" },
+  { name: "Zod", category: "backend", level: "working" },
 
   // Bases de datos
   { name: "PostgreSQL", category: "databases", level: "daily" },
   { name: "MongoDB", category: "databases", level: "daily" },
   { name: "DynamoDB", category: "databases", level: "daily" },
+  { name: "pgvector", category: "databases", level: "working" },
+  { name: "Redis", category: "databases", level: "working" },
+  { name: "Supabase", category: "databases", level: "working" },
 
   // Cloud y DevOps
   { name: "AWS", category: "cloud", level: "daily" },
@@ -48,6 +56,8 @@ export const skills = [
   { name: "VPC", category: "cloud", level: "daily" },
   { name: "Docker", category: "cloud", level: "daily" },
   { name: "GitHub Actions", category: "cloud", level: "daily" },
+  { name: "Terraform", category: "cloud", level: "working" },
+  { name: "Vercel", category: "cloud", level: "working" },
 
   // IA
   { name: "RAG", category: "ai", level: "daily" },
@@ -57,6 +67,8 @@ export const skills = [
   // Herramientas
   { name: "Git", category: "tools", level: "daily" },
   { name: "Lovable", category: "tools", level: "working" },
+  { name: "Vitest", category: "tools", level: "working" },
+  { name: "Playwright", category: "tools", level: "working" },
 ] as const satisfies readonly Skill[];
 
 export type SkillName = (typeof skills)[number]["name"];

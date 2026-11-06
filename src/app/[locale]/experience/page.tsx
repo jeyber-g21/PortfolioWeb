@@ -22,11 +22,15 @@ export default async function ExperiencePage({
   return (
     <>
       <PageTransition>
-        <PageHeader index="02" title={t("nav.experience")} />
+        <PageHeader
+          index="02"
+          title={t("nav.experience")}
+          intro={t("intro.experience")}
+        />
       </PageTransition>
       <PageTransition delayed>
-        <div className="pt-section">
-          <Section id="career" index="01" title={t("experience.career")}>
+        <div>
+          <Section id="career" index="01" title={t("experience.career")} first>
             <ExperienceTimeline />
           </Section>
           <Section id="stack" index="02" title={t("experience.stack")}>

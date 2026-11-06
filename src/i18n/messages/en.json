@@ -5,7 +5,8 @@
   },
   "a11y": {
     "skipToContent": "Skip to content",
-    "mainNav": "Main navigation"
+    "mainNav": "Main navigation",
+    "profileLinks": "Profiles and CV"
   },
   "nav": {
     "home": "Home",
@@ -52,7 +53,38 @@
     "demo": "Demo",
     "code": "Code",
     "caseStudy": "Case study",
-    "coursework": "See also my coursework projects on GitHub"
+    "coursework": "See also my coursework projects on GitHub",
+    "metrics": "By the numbers",
+    "gallery": {
+      "name": "Screenshots of {title}",
+      "carousel": "carousel",
+      "slide": "screenshot",
+      "prev": "Previous screenshot",
+      "next": "Next screenshot",
+      "position": "{n} of {total}",
+      "goTo": "Show screenshot {n}"
+    },
+    "courseworkTitle": "Learning projects",
+    "courseworkIntro": "Personal projects where I practiced frameworks and patterns outside work.",
+    "liveDemo": "Live demo",
+    "allRepos": "See all my repositories on GitHub",
+    "diagrams": {
+      "chatbot": {
+        "label": "Conversational agent architecture",
+        "user": "ManyChat",
+        "userNote": "member's message",
+        "gateway": "API Gateway",
+        "lambda": "AWS Lambda",
+        "lambdaNote": "Node.js middleware",
+        "model": "Amazon Bedrock",
+        "modelNote": "Claude Haiku",
+        "state": "DynamoDB",
+        "kb": "Knowledge base",
+        "kbNote": "8 documents inside the prompt, with prompt caching",
+        "fallback": "If Bedrock fails, it replies with the cooperative's phone number",
+        "ops": "Terraform · GitHub Actions with OIDC · CloudWatch alarms"
+      }
+    }
   },
   "stack": {
     "categories": {
@@ -85,6 +117,12 @@
     "experience": "Experience",
     "fullExperience": "See full career",
     "coreStack": "Core stack",
-    "contact": "Let’s talk"
+    "contact": "Let’s talk",
+    "coursework": "Learning projects"
+  },
+  "intro": {
+    "projects": "AI platforms I designed and built at Lintryxs, plus learning projects with live demos.",
+    "experience": "Career, stack and education: from mechatronics engineering to full-stack and cloud development.",
+    "about": "Full-Stack & Cloud Developer based in Cúcuta, Colombia. I work remotely."
   }
 }

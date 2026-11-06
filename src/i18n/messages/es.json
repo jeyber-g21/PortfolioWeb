@@ -5,7 +5,8 @@
   },
   "a11y": {
     "skipToContent": "Saltar al contenido",
-    "mainNav": "Navegación principal"
+    "mainNav": "Navegación principal",
+    "profileLinks": "Perfiles y CV"
   },
   "nav": {
     "home": "Inicio",
@@ -52,7 +53,38 @@
     "demo": "Demo",
     "code": "Código",
     "caseStudy": "Caso de estudio",
-    "coursework": "Ver también mis proyectos de formación en GitHub"
+    "coursework": "Ver también mis proyectos de formación en GitHub",
+    "metrics": "En números",
+    "gallery": {
+      "name": "Capturas de {title}",
+      "carousel": "carrusel",
+      "slide": "captura",
+      "prev": "Captura anterior",
+      "next": "Captura siguiente",
+      "position": "{n} de {total}",
+      "goTo": "Ver captura {n}"
+    },
+    "courseworkTitle": "Proyectos de formación",
+    "courseworkIntro": "Proyectos personales con los que practiqué frameworks y patrones fuera del trabajo.",
+    "liveDemo": "Demo en vivo",
+    "allRepos": "Ver todos mis repositorios en GitHub",
+    "diagrams": {
+      "chatbot": {
+        "label": "Arquitectura del agente conversacional",
+        "user": "ManyChat",
+        "userNote": "mensaje del socio",
+        "gateway": "API Gateway",
+        "lambda": "AWS Lambda",
+        "lambdaNote": "middleware en Node.js",
+        "model": "Amazon Bedrock",
+        "modelNote": "Claude Haiku",
+        "state": "DynamoDB",
+        "kb": "Base de conocimiento",
+        "kbNote": "8 documentos dentro del prompt, con prompt caching",
+        "fallback": "Si Bedrock falla, responde con el teléfono de la cooperativa",
+        "ops": "Terraform · GitHub Actions con OIDC · alarmas en CloudWatch"
+      }
+    }
   },
   "stack": {
     "categories": {
@@ -85,6 +117,12 @@
     "experience": "Experiencia",
     "fullExperience": "Ver trayectoria completa",
     "coreStack": "Stack principal",
-    "contact": "Hablemos"
+    "contact": "Hablemos",
+    "coursework": "Proyectos de formación"
+  },
+  "intro": {
+    "projects": "Plataformas con IA que diseñé y desarrollé en Lintryxs, y proyectos de formación con demo en vivo.",
+    "experience": "Trayectoria, stack y formación: de la ingeniería mecatrónica al desarrollo full-stack y cloud.",
+    "about": "Desarrollador Full-Stack & Cloud en Cúcuta, Colombia. Trabajo en remoto."
   }
 }

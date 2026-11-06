@@ -16,7 +16,9 @@ en menos de 90 segundos.
 
 1. **Server Components por defecto.** `'use client'` solo en el toggle de
    tema, el selector de idioma, los enlaces del navbar (`NavLinks`, necesita la
-   ruta activa para `aria-current`). Las animaciones no necesitan cliente:
+   ruta activa para `aria-current`) y el envoltorio `ThemeProvider` de
+   next-themes (desactiva su script en el cliente) y `ProjectGallery` (carrusel
+   de capturas: necesita saber qué imagen está visible). Las animaciones no necesitan cliente:
    transiciones con `<ViewTransition>` de React y `reveal` en CSS puro. Si
    añades otro, justifícalo en el PR.
 2. **Nada de texto quemado en componentes.** Todo string visible sale de

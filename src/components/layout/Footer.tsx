@@ -7,7 +7,7 @@ export async function Footer() {
 
   return (
     <footer className="border-t border-border">
-      <div className="mx-auto flex max-w-page flex-wrap justify-between gap-x-6 gap-y-2 px-6 py-8 text-small text-muted md:px-12">
+      <div className="mx-auto flex max-w-page flex-wrap justify-between gap-x-6 gap-y-2 px-6 pt-8 pb-24 text-small text-muted md:px-12 xl:pb-8">
         <p>
           © {new Date().getFullYear()} {profile.displayName}
         </p>

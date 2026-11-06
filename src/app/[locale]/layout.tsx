@@ -2,9 +2,10 @@ import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import { hasLocale, NextIntlClientProvider } from "next-intl";
 import { getTranslations, setRequestLocale } from "next-intl/server";
-import { ThemeProvider } from "next-themes";
+import { ThemeProvider } from "@/components/layout/ThemeProvider";
 import { Footer } from "@/components/layout/Footer";
 import { Header } from "@/components/layout/Header";
+import { SocialRail } from "@/components/layout/SocialRail";
 import { profile } from "@/content/profile";
 import { routing } from "@/i18n/routing";
 import { fontVariables } from "@/lib/fonts";
@@ -37,11 +38,16 @@ export default async function LocaleLayout({
   const t = await getTranslations("a11y");
 
   return (
-    <html lang={locale} className={fontVariables} suppressHydrationWarning>
+    <html
+      lang={locale}
+      className={fontVariables}
+      data-scroll-behavior="smooth"
+      suppressHydrationWarning
+    >
       <body className="flex min-h-dvh flex-col">
         {/* messages={null}: los componentes cliente reciben sus textos por props, no se envía el JSON al navegador. */}
         <NextIntlClientProvider messages={null}>
-          <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
+          <ThemeProvider>
             <a
               href="#main"
               className="fixed top-0 left-3 z-20 -translate-y-full bg-accent px-4 py-3 text-bg focus:translate-y-3"
@@ -53,6 +59,7 @@ export default async function LocaleLayout({
               {children}
             </main>
             <Footer />
+            <SocialRail />
           </ThemeProvider>
         </NextIntlClientProvider>
       </body>

@@ -26,6 +26,24 @@ export const profile: Profile = {
     github: "https://github.com/jeyber-g21",
     linkedin: "https://www.linkedin.com/in/jeyber-adrian-gomez-g",
   },
+  photo: {
+    src: "/images/jeyber-gomez.webp",
+    width: 927,
+    height: 1152,
+    alt: {
+      es: "Retrato de Jeyber Gómez, sentado, con camisa azul claro",
+      en: "Portrait of Jeyber Gómez, seated, wearing a light blue shirt",
+    },
+  },
+  aboutPhoto: {
+    src: "/images/jeyber-gomez-about.webp",
+    width: 973,
+    height: 1000,
+    alt: {
+      es: "Retrato en primer plano de Jeyber Gómez, con camisa oscura, sobre fondo claro",
+      en: "Close-up portrait of Jeyber Gómez in a dark shirt against a light background",
+    },
+  },
   cv: {
     es: "/cv/Jeyber-Gomez-CV-ES.pdf",
     en: "/cv/Jeyber-Gomez-CV-EN.pdf",
@@ -43,6 +61,6 @@ export const profile: Profile = {
       name: { es: "Español", en: "Spanish" },
       level: { es: "Nativo", en: "Native" },
     },
-    { name: { es: "Inglés", en: "English" }, level: { es: "C1", en: "C1" } },
+    { name: { es: "Inglés", en: "English" }, level: { es: "B2", en: "B2" } },
   ],
 };

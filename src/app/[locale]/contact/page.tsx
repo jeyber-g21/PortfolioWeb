@@ -12,16 +12,16 @@ export default async function ContactPage({
   params,
 }: PageProps<"/[locale]/contact">) {
   await initPage(params);
-  const t = await getTranslations("nav");
+  const t = await getTranslations();
 
   return (
     <>
       <PageTransition>
-        <PageHeader index="04" title={t("contact")} />
+        <PageHeader index="04" title={t("nav.contact")} />
       </PageTransition>
       <PageTransition delayed>
-        <div className="mx-auto max-w-page px-6 py-section md:px-12">
-          <div className="border-t border-border pt-section lg:grid lg:grid-cols-12 lg:gap-8">
+        <div className="mx-auto max-w-page px-6 pb-section md:px-12">
+          <div className="border-t border-border pt-12 lg:grid lg:grid-cols-12 lg:gap-8">
             <div className="lg:col-span-9 lg:col-start-4">
               <ContactDetails />
             </div>

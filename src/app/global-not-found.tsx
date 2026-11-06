@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import Link from "next/link";
-import { ThemeProvider } from "next-themes";
+import { ThemeProvider } from "@/components/layout/ThemeProvider";
 import en from "@/i18n/messages/en.json";
 import es from "@/i18n/messages/es.json";
 import { fontVariables } from "@/lib/fonts";
@@ -15,9 +15,14 @@ export const metadata: Metadata = {
 
 export default function GlobalNotFound() {
   return (
-    <html lang="en" className={fontVariables} suppressHydrationWarning>
+    <html
+      lang="en"
+      className={fontVariables}
+      data-scroll-behavior="smooth"
+      suppressHydrationWarning
+    >
       <body>
-        <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
+        <ThemeProvider>
           <main className="mx-auto max-w-page px-6 py-section md:px-12">
             <p className="label text-muted">404</p>
             <h1 className="mt-4 text-h2">{en.notFound.title}</h1>
