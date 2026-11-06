@@ -65,8 +65,8 @@ export async function Hero() {
             height={profile.photo.height}
             alt={localize(profile.photo.alt, locale)}
             sizes="(min-width: 1024px) 400px, 384px"
-            loading="eager"
-            fetchPriority="high"
+            // Es el LCP: <link rel="preload"> en el <head> para que arranque junto a las fuentes.
+            preload
             className="relative h-auto w-full rounded-photo bg-surface"
           />
         </div>

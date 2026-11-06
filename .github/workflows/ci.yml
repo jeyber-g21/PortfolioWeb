@@ -23,4 +23,9 @@ jobs:
       - run: npm run lint
       - run: npm run typecheck
       - run: npm run build
-      # Fase 2: test de accesibilidad con axe y Lighthouse CI.
+        env:
+          # Canonical y sitemap apuntan al servidor local para que Lighthouse los valide.
+          NEXT_PUBLIC_SITE_URL: http://localhost:3200
+      - run: npx playwright install --with-deps chromium
+      - run: npm run test:a11y
+      - run: npm run lighthouse

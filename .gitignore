@@ -42,3 +42,8 @@ next-env.d.ts
 
 # datos confidenciales locales (nunca se suben)
 /_privado/
+
+# tests
+/test-results/
+/playwright-report/
+/.lighthouseci/

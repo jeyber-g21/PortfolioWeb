@@ -17,7 +17,7 @@ The site is also a code sample in its own right, so this repository is public.
 | i18n      | [next-intl](https://next-intl.dev): localized URLs (`/en/projects`, `/es/proyectos`), root redirect by `Accept-Language` |
 | Theming   | [next-themes](https://github.com/pacocoursey/next-themes): light / dark, persisted, no flash on load                     |
 | Fonts     | Fraunces, Inter and JetBrains Mono, self-hosted through `next/font`                                                      |
-| CI        | GitHub Actions: format, lint, typecheck and build on every push and PR                                                   |
+| CI        | GitHub Actions: format, lint, typecheck, build, axe (Playwright) and Lighthouse CI on every push and PR                  |
 
 No UI component library, no CMS, no backend, no global state.
 
@@ -26,11 +26,14 @@ No UI component library, no CMS, no backend, no global state.
 - **Content is typed data, separate from the UI.** Everything shown on the page lives in [`src/content/`](src/content), and the components only render it. Updating a project means editing an object, never JSX.
 - **The compiler catches content typos.** Project and experience stacks are typed against the skill list in [`stack.ts`](src/content/stack.ts), so a misspelled technology (`"Reactt"`) fails the typecheck. Translation keys are typed too.
 - **The home page is a summary; the other pages hold the detail.** A recruiter who never clicks still sees projects, experience, core stack and contact on the home page. Projects, Experience, About and Contact each have their own page.
-- **Server Components by default.** Only three small components ship to the client: the theme toggle, the language switch and the nav links (which need the active route). Their strings arrive as props, so no translation JSON is sent to the browser.
+- **Server Components by default.** Only five small components ship to the client: the theme toggle and its provider, the language switch, the nav links (which need the active route) and the project screenshot carousel. Their strings arrive as props, so no translation JSON is sent to the browser.
 - **Motion without a motion library.** Page changes use React 19.3 `<ViewTransition>` over the browser View Transitions API: a short fade and a 16 px rise, with the header anchored. Blocks reveal on scroll through CSS scroll-driven animations (`animation-timeline: view()`). Both turn off under `prefers-reduced-motion`, ship no extra JS, and degrade to no animation where unsupported.
 - **Works without JavaScript.** Every page is pre-rendered HTML. Navigation, the language switch and the CV download are plain links. The sticky header's bottom rule appears on scroll using a CSS scroll-driven animation, with no JS.
 - **Dark mode is its own palette.** It is a separately designed warm-ink palette, not an inversion of the light one. Every text and background pair meets WCAG AA in both themes.
-- **Accessibility is an acceptance criterion.** The target is WCAG 2.2 AA: a skip link, a single `h1` with no heading-level gaps, landmarks with `aria-labelledby`, a visible focus ring, 44 px touch targets, `prefers-reduced-motion` respected and underlined body links.
+- **Accessibility is an acceptance criterion.** The target is WCAG 2.2 AA: a skip link, a single `h1` with no heading-level gaps, landmarks with `aria-labelledby`, a visible focus ring, 44 px touch targets, `prefers-reduced-motion` respected and underlined body links. CI runs axe on all ten pages, in both themes, and fails on any serious or critical violation.
+- **SEO without a plugin.** Canonical and reciprocal `hreflang` (with `x-default` → English), a generated sitemap and robots, `schema.org/Person` JSON-LD (no phone number, by design) and Open Graph images rendered at build time with `next/og`, using the site's own typefaces and palette.
+- **Security headers.** A CSP with every source restricted to `'self'`, plus `nosniff`, `Referrer-Policy`, `Permissions-Policy` and `frame-ancestors 'none'`. Scripts allow `'unsafe-inline'` because nonces would force every page to render per request; the site is fully static.
+- **Performance budget in CI.** Lighthouse CI (simulated mobile, 3 runs) blocks on Accessibility, Best Practices and SEO below 95 and on Performance below 85, and caps JavaScript at 180 KB gzip (≈169 KB with Brotli on Vercel). Today Accessibility, Best Practices and SEO score 100 and Performance about 90–93, held back by the hero photo competing with three web fonts on a slow 4G profile.
 
 ## Project structure
 
@@ -39,15 +42,18 @@ src/
 ├── app/
 │   ├── [locale]/            # Root layout, home and the projects, experience, about, contact pages
 │   ├── global-not-found.tsx # Bilingual 404 for unmatched URLs
+│   ├── sitemap.ts, robots.ts
 │   └── globals.css          # Design tokens (color, type scale, spacing)
 ├── components/
 │   ├── layout/              # Header, Footer, ThemeToggle, LocaleSwitch
 │   ├── sections/            # Hero, ProjectCard, ExperienceTimeline, StackGrid, …
 │   └── ui/                  # Section, PageHeader, Tag, ButtonLink
+├── assets/fonts/            # Static TTFs (OFL) used only to render Open Graph images
 ├── content/                 # Typed content: profile, experience, projects, stack
 ├── i18n/                    # Routing, request config and en/es messages
-├── lib/                     # Fonts, site config, helpers
-└── proxy.ts                 # Locale detection and redirect
+├── lib/                     # Fonts, site config, SEO helpers
+└── proxy.ts                 # Locale routing (the root always opens in English)
+tests/                       # Playwright + axe accessibility tests
 ```
 
 ## Getting started
@@ -59,14 +65,16 @@ npm install
 npm run dev          # http://localhost:3000
 ```
 
-| Script              | What it does                                |
-| ------------------- | ------------------------------------------- |
-| `npm run dev`       | Development server                          |
-| `npm run build`     | Production build                            |
-| `npm run start`     | Serve the production build                  |
-| `npm run lint`      | ESLint                                      |
-| `npm run typecheck` | Generate route types and run `tsc --noEmit` |
-| `npm run format`    | Prettier, including Tailwind class sorting  |
+| Script               | What it does                                                                                          |
+| -------------------- | ----------------------------------------------------------------------------------------------------- |
+| `npm run dev`        | Development server                                                                                    |
+| `npm run build`      | Production build                                                                                      |
+| `npm run start`      | Serve the production build                                                                            |
+| `npm run lint`       | ESLint                                                                                                |
+| `npm run typecheck`  | Generate route types and run `tsc --noEmit`                                                           |
+| `npm run format`     | Prettier, including Tailwind class sorting                                                            |
+| `npm run test:a11y`  | axe on every page, both themes (needs a build; locally `PW_CHANNEL=msedge` uses an installed browser) |
+| `npm run lighthouse` | Lighthouse CI against the production build                                                            |
 
 ## Roadmap
 
@@ -74,7 +82,8 @@ npm run dev          # http://localhost:3000
 - [x] Content and sections
 - [x] Multi-page structure with a summary home page
 - [x] Page transitions and scroll reveals
-- [ ] Polish: metadata, Open Graph images, JSON-LD, axe and Lighthouse CI
+- [x] Polish: metadata, Open Graph images, JSON-LD, sitemap, security headers, axe and Lighthouse CI
+- [ ] AI assistant that answers recruiters' questions from the site's own content
 - [ ] Case studies for professional projects (MDX)
 
 ## Contact

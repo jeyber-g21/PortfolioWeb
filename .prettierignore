@@ -5,3 +5,7 @@ next-env.d.ts
 CLAUDE.md
 AGENTS.md
 _privado
+test-results
+playwright-report
+.lighthouseci
+src/assets/fonts

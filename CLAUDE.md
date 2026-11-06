@@ -48,7 +48,8 @@ npm run build         # build de producción, debe pasar sin warnings
 npm run lint          # eslint
 npm run typecheck     # next typegen + tsc --noEmit
 npm run format        # prettier (format:check en CI)
-npm run test:a11y     # playwright + axe (se añade en la Fase 2)
+npm run test:a11y     # playwright + axe (tras `npm run build`; en local PW_CHANNEL=msedge)
+npm run lighthouse    # Lighthouse CI con el presupuesto de lighthouserc.json
 ```
 
 ## Definición de "terminado"

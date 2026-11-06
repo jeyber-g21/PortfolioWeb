@@ -2,8 +2,11 @@ import { defineRouting } from "next-intl/routing";
 
 export const routing = defineRouting({
   locales: ["es", "en"],
-  // Fallback para la raíz cuando Accept-Language no coincide (spec §11).
+  // La raíz siempre abre en inglés, sin mirar el idioma del navegador ni la cookie:
+  // decisión del usuario (la audiencia son reclutadores internacionales). El cambio a
+  // español es explícito desde el selector del header.
   defaultLocale: "en",
+  localeDetection: false,
   // Rutas internas en inglés (nombres de carpeta en app/[locale]); la URL pública se traduce.
   pathnames: {
     "/": "/",

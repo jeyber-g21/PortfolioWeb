@@ -9,6 +9,8 @@ import { SocialRail } from "@/components/layout/SocialRail";
 import { profile } from "@/content/profile";
 import { routing } from "@/i18n/routing";
 import { fontVariables } from "@/lib/fonts";
+import { alternatesFor, socialFor } from "@/lib/seo";
+import { siteUrl } from "@/lib/site";
 import "../globals.css";
 
 export function generateStaticParams() {
@@ -22,8 +24,12 @@ export async function generateMetadata({
   if (!hasLocale(routing.locales, locale)) notFound();
   const t = await getTranslations({ locale, namespace: "metadata" });
   return {
+    metadataBase: new URL(siteUrl),
     title: { default: t("title"), template: `%s — ${profile.displayName}` },
     description: t("description"),
+    authors: [{ name: profile.name, url: siteUrl }],
+    alternates: alternatesFor("/", locale),
+    ...socialFor("/", locale, t("title"), t("description"), t("ogAlt")),
   };
 }
 

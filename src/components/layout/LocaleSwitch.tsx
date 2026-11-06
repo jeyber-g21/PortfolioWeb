@@ -18,10 +18,13 @@ export function LocaleSwitch({ target, label, short }: Props) {
       href={pathname}
       locale={target}
       hrefLang={target}
-      aria-label={label}
+      title={label}
       className="inline-flex size-touch items-center justify-center label text-muted transition-colors hover:text-ink"
     >
+      {/* El nombre accesible empieza por el texto visible ("ES, Ver en…") para que el
+          control por voz funcione diciendo lo que se ve (WCAG 2.5.3). */}
       {short}
+      <span className="sr-only">, {label}</span>
     </Link>
   );
 }

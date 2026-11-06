@@ -1,7 +1,9 @@
 import type { Metadata } from "next";
 import { getLocale, getTranslations, setRequestLocale } from "next-intl/server";
+import { profile } from "@/content/profile";
 import type { Localized } from "@/content/types";
 import type { Locale } from "@/i18n/routing";
+import { alternatesFor, socialFor } from "@/lib/seo";
 
 /** Locale actual tipado, para Server Components. */
 export async function currentLocale(): Promise<Locale> {
@@ -20,15 +22,28 @@ export async function initPage(params: Promise<{ locale: string }>) {
   return locale as Locale;
 }
 
-/** Metadata de una página interna: el título es su nombre en el navbar. */
+/** Metadata de una página interna: el título es su nombre en el navbar y la descripción,
+ *  su frase de entrada (Contacto no tiene: usa la del sitio). */
 export async function pageMetadata(
   params: Promise<{ locale: string }>,
   key: "projects" | "experience" | "about" | "contact",
 ): Promise<Metadata> {
-  const { locale } = await params;
-  const t = await getTranslations({
-    locale: locale as Locale,
-    namespace: "nav",
-  });
-  return { title: t(key) };
+  const locale = (await params).locale as Locale;
+  const t = await getTranslations({ locale });
+  const href = `/${key}` as const;
+  const title = t(`nav.${key}`);
+  const description =
+    key === "contact" ? t("metadata.description") : t(`intro.${key}`);
+  return {
+    title,
+    description,
+    alternates: alternatesFor(href, locale),
+    ...socialFor(
+      href,
+      locale,
+      `${title} — ${profile.displayName}`,
+      description,
+      t("metadata.ogAlt"),
+    ),
+  };
 }

@@ -12,6 +12,7 @@ import { experience } from "@/content/experience";
 import { projects } from "@/content/projects";
 import { coreStack } from "@/content/stack";
 import { Link } from "@/i18n/navigation";
+import { personJsonLd } from "@/lib/seo";
 import { initPage, localize } from "@/lib/utils";
 
 // Inicio = resumen completo: quien no hace clic ya ve proyectos, experiencia, stack y contacto.
@@ -25,6 +26,13 @@ export default async function HomePage({ params }: PageProps<"/[locale]">) {
 
   return (
     <>
+      {/* Datos estructurados (spec §13). "<" escapado para que el JSON no pueda cerrar el script. */}
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify(personJsonLd(locale)).replace(/</g, "\\u003c"),
+        }}
+      />
       <PageTransition>
         <Hero />
       </PageTransition>
